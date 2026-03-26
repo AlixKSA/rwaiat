@@ -1,34 +1,35 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحة الاختبار الإعلاني</title>
     <link rel="stylesheet" href="style.css">
-    <title>SHADOW NOVELS | ARABIC</title>
 </head>
 <body>
 
-<header>
-    <a href="index.html" class="logo">SHADOW</a>
-    <div class="coin-badge">
-        <span id="balance-display">0</span> COINS 🟡
-    </div>
-</header>
-
-<div class="main-grid">
-    <div class="novel-item">
-        <img src="https://media.shadownovels.com/file/shadownovels/upload/2026/02/21/1771635879611-GeINDS03-0000.webp" class="novel-poster">
-        <div class="novel-details">
-            <a href="novel_1_chapters.html" class="novel-title">نهضة المبرمج الملعون</a>
-            <div class="novel-meta">
-                <span>الفصول: 120</span>
-                <span style="color: #27ae60;">مستمر</span>
+    <div class="test-container">
+        <h1>منصة اختبار الإعلانات</h1>
+        <p>يتم الآن فحص وتجربة ظهور الوحدات الإعلانية من A-ADS</p>
+        
+        <div class="ad-section">
+            <span>إعلان بمقاس 728x90 (بنر علوي)</span>
+            <div class="ad-slot">
+                <iframe data-aa='507117' src='//ad.a-ads.com/507117?size=728x90' style='width:728px; height:90px; border:0px; padding:0; overflow:hidden; background-color: transparent;'></iframe>
             </div>
         </div>
-    </div>
-    
+
+        <div class="ad-section">
+            <span>إعلان بمقاس 300x250 (مربع جانبي)</span>
+            <div class="ad-slot">
+                <iframe data-aa='507117' src='//ad.a-ads.com/507117?size=300x250' style='width:300px; height:250px; border:0px; padding:0; overflow:hidden; background-color: transparent;'></iframe>
+            </div>
+        </div>
+
+        <div class="status">
+            حالة الاختبار: <span id="status-text">جاري العرض...</span>
+        </div>
     </div>
 
-<script src="script.js"></script>
 </body>
 </html>

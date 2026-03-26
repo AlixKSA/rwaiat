@@ -2,25 +2,38 @@
 <html lang="ar">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>موقع الروايات</title>
+    <title>موقع رواياتي | احترافية وإبداع</title>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>رواياتي المختارة</h1>
-            <div>رصيدك: <span id="balance-display">0</span> كوينز</div>
-        </header>
 
+<header>
+    <div class="logo">رواياتي 📚</div>
+    <nav>
+        <div class="balance-box">رصيدك: <span id="balance-display">0</span> 🟡</div>
+    </nav>
+</header>
+
+<div class="container">
+    <div style="text-align:center; margin-bottom: 50px;">
+        <h1 style="color: var(--primary-color);">اكتشف عالم الخيال</h1>
+        <p style="color: var(--text-muted);">أفضل الروايات الحصرية بين يديك</p>
+    </div>
+
+    <div class="novel-grid">
         <div class="novel-card">
-            <img src="https://via.placeholder.com/100x150" alt="غلاف">
-            <div>
-                <h3>رواية "برمجة المستحيل"</h3>
-                <p>رواية تحكي قصة مبرمج اكتشف كوداً يغير الواقع...</p>
-                <a href="novel_1_chapters.html" class="btn">قائمة الفصول</a>
+            <img src="https://images.unsplash.com/photo-1543004218-ee141104975a?auto=format&fit=crop&q=80&w=2000" alt="الغلاف">
+            <div class="novel-info">
+                <h3>برمجة المستحيل</h3>
+                <p>قصة مبرمج يتحدى الواقع بكود برمجي سري...</p>
+                <a href="novel_1_chapters.html" class="btn-read">قراءة الآن</a>
             </div>
         </div>
-    </div>
-    <script src="script.js"></script>
+
+        </div>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>

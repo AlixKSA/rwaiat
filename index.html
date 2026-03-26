@@ -3,33 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>صفحة الاختبار الإعلاني</title>
+    <title>منصة اختبار الإعلانات المتقدمة</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="test-container">
-        <h1>منصة اختبار الإعلانات</h1>
-        <p>يتم الآن فحص وتجربة ظهور الوحدات الإعلانية من A-ADS</p>
-        
-        <div class="ad-section">
-            <span>إعلان بمقاس 728x90 (بنر علوي)</span>
-            <div class="ad-slot">
-                <iframe data-aa='507117' src='//ad.a-ads.com/507117?size=728x90' style='width:728px; height:90px; border:0px; padding:0; overflow:hidden; background-color: transparent;'></iframe>
-            </div>
-        </div>
+    <div class="test-wrapper">
+        <header>
+            <div class="status-dot"></div>
+            <h1>نظام التحقق من الإعلانات v1.0</h1>
+            <p id="timer">جاري المراقبة: <span id="clock">00:00:00</span></p>
+        </header>
 
-        <div class="ad-section">
-            <span>إعلان بمقاس 300x250 (مربع جانبي)</span>
-            <div class="ad-slot">
-                <iframe data-aa='507117' src='//ad.a-ads.com/507117?size=300x250' style='width:300px; height:250px; border:0px; padding:0; overflow:hidden; background-color: transparent;'></iframe>
+        <section class="ad-test-zone">
+            <div class="zone-label">منطقة العرض (Adaptive Ad Unit)</div>
+            
+            <div id="frame" style="width: 100%; margin: auto; position: relative; z-index: 99998;">
+                <iframe data-aa='2431921' src='//acceptable.a-ads.com/2431921/?size=Adaptive'
+                        style='border:0; padding:0; width:100%; height:250px; overflow:hidden; display: block; margin: auto'></iframe>
             </div>
-        </div>
+            </section>
 
-        <div class="status">
-            حالة الاختبار: <span id="status-text">جاري العرض...</span>
-        </div>
+        <footer>
+            <button onclick="location.reload()" class="refresh-btn">تحديث الصفحة للاختبار</button>
+            <p>ملاحظة: سيتم تحديث الإحصائيات في A-ADS خلال 24 ساعة.</p>
+        </footer>
     </div>
 
+    <script>
+        // سكربت بسيط لعرض عداد الوقت لتعرف منذ متى الصفحة مفتوحة
+        function updateClock() {
+            const now = new Date();
+            document.getElementById('clock').innerText = now.toLocaleTimeString();
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+    </script>
 </body>
 </html>

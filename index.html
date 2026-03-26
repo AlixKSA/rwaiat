@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>الفصل المدفوع - رواية الغموض</title>
+    <style>
+        #locked-content { display: none; background: #f9f9f9; padding: 20px; }
+        #pay-wall { text-align: center; margin-top: 50px; padding: 30px; border: 2px dashed #0070ba; }
+    </style>
+</head>
+<body>
+
+    <div id="pay-wall">
+        <h2>هذا الفصل مدفوع</h2>
+        <p>لقراءة بقية الأحداث المشوقة، يرجى دفع 1 دولار (أو ما يعادل الكوينز)</p>
+        <div id="paypal-button-container"></div>
+    </div>
+
+    <div id="locked-content">
+        <h2>الجزء الثاني من الرواية</h2>
+        <p>هنا تضع نص الرواية الكامل الذي سيظهر بعد الدفع مباشرة...</p>
+    </div>
+
+    <script src="https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID"></script>
+    <script>
+        paypal.Buttons({
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: { value: '1.00' } // سعر الفصل
+                    }]
+                });
+            },
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
+                    alert('تم الدفع بنجاح يا ' + details.payer.name.given_name);
+                    // إخفاء منطقة الدفع وإظهار الرواية
+                    document.getElementById('pay-wall').style.display = 'none';
+                    document.getElementById('locked-content').style.display = 'block';
+                    
+                    // اختيارياً: تخزين الحالة في المتصفح لكي لا يدفع مرة أخرى (لفترة مؤقتة)
+                    localStorage.setItem('chapter_1_paid', 'true');
+                });
+            }
+        }).render('#paypal-button-container');
+
+        // فحص إذا كان قد دفع مسبقاً
+        if(localStorage.getItem('chapter_1_paid') === 'true') {
+            document.getElementById('pay-wall').style.display = 'none';
+            document.getElementById('locked-content').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

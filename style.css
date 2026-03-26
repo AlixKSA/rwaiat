@@ -1,9 +1,104 @@
-body { font-family: 'Arial', sans-serif; background: #f0f2f5; direction: rtl; margin: 0; padding: 20px; color: #333; }
-.container { max-width: 800px; margin: auto; background: white; padding: 20px; border-radius: 12px; shadow: 0 4px 10px rgba(0,0,0,0.1); }
-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #eee; padding-bottom: 10px; margin-bottom: 20px; }
-.novel-card { border: 1px solid #ddd; padding: 15px; border-radius: 8px; margin-bottom: 15px; display: flex; gap: 15px; }
-.novel-card img { width: 100px; border-radius: 5px; }
-.btn { background: #27ae60; color: white; padding: 8px 16px; text-decoration: none; border-radius: 5px; cursor: pointer; border: none; }
-.btn-premium { background: #e67e22; }
-.chapter-item { display: flex; justify-content: space-between; padding: 10px; border-bottom: 1px solid #eee; }
-#balance-display { font-weight: bold; color: #e74c3c; }
+/* استيراد خط كوفي عربي أنيق */
+@import url('https://fonts.googleapis.com/css2?family=Noto_Kufi_Arabic:wght@300;400;700&display=swap');
+
+:root {
+    --primary-color: #e67e22; /* برتقالي ذهبي */
+    --bg-dark: #1a1a2e;
+    --card-bg: #16213e;
+    --text-main: #e94560;
+    --text-white: #ffffff;
+    --text-muted: #b2bec3;
+}
+
+body {
+    font-family: 'Noto Kufi Arabic', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-white);
+    margin: 0;
+    direction: rtl;
+    line-height: 1.6;
+}
+
+/* الهيدر الاحترافي */
+header {
+    background: var(--card-bg);
+    padding: 15px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.5);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo { font-size: 1.5rem; font-weight: bold; color: var(--primary-color); }
+
+.balance-box {
+    background: rgba(230, 126, 34, 0.1);
+    border: 1px solid var(--primary-color);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+/* ترتيب الروايات في شبكة احترافية */
+.container { padding: 40px 5%; }
+
+.novel-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 30px;
+}
+
+/* بطاقة الرواية (Card) */
+.novel-card {
+    background: var(--card-bg);
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    position: relative;
+}
+
+.novel-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px rgba(230, 126, 34, 0.3);
+}
+
+.novel-card img {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+}
+
+.novel-info { padding: 15px; text-align: center; }
+.novel-info h3 { margin: 10px 0; font-size: 1.1rem; }
+.novel-info p { font-size: 0.8rem; color: var(--text-muted); height: 40px; overflow: hidden; }
+
+/* أزرار عصرية */
+.btn-read {
+    background: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.btn-read:hover { background: #d35400; }
+
+/* قائمة الفصول */
+.chapter-list { background: var(--card-bg); border-radius: 12px; padding: 10px; list-style: none; }
+.chapter-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    transition: background 0.2s;
+}
+.chapter-item:hover { background: rgba(255,255,255,0.05); }
+.lock-icon { color: var(--primary-color); margin-right: 10px; }

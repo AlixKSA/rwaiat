@@ -1,305 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Alix-MOD</title>
-
-<style>
-body {
-    margin:0;
-    font-family: Arial;
-    background:#f5f5f5;
-}
-
-/* HEADER */
-header {
-    background:#fff;
-    padding:15px;
-    text-align:center;
-    border-bottom:1px solid #ddd;
-}
-
-h1 {
-    margin:0;
-    font-size:26px;
-}
-
-/* INFO SECTION */
-.info {
-    background:white;
-    padding:25px;
-    margin:20px;
-    border-radius:10px;
-    line-height:1.6;
-}
-
-.info h2 {
-    color:#d10000;
-}
-
-/* VIDEO */
-.video {
-    text-align:center;
-    padding:20px;
-    background:white;
-    margin:20px;
-    border-radius:10px;
-}
-
-.video iframe {
-    width:90%;
-    max-width:800px;
-    height:400px;
-    border:none;
-}
-
-/* STORE */
-.container {
-    padding:30px;
-}
-
-.platforms {
-    display:flex;
-    justify-content:center;
-    gap:20px;
-    flex-wrap:wrap;
-}
-
-.card {
-    background:white;
-    border:1px solid #ddd;
-    border-radius:12px;
-    width:220px;
-    padding:20px;
-    text-align:center;
-}
-
-.card img {
-    width:80px;
-}
-
-button {
-    margin-top:10px;
-    padding:10px;
-    width:100%;
-    background:#ffa41c;
-    border:none;
-    border-radius:8px;
-    cursor:pointer;
-}
-
-/* PAYMENT PAGE */
-#paymentPage {
-    display:none;
-    text-align:center;
-    padding:30px;
-}
-
-.pay-options {
-    display:flex;
-    justify-content:center;
-    gap:20px;
-    flex-wrap:wrap;
-    margin-top:20px;
-}
-
-.pay-card {
-    background:white;
-    border:1px solid #ddd;
-    padding:15px;
-    width:160px;
-    text-align:center;
-    border-radius:12px;
-}
-
-.pay-card img {
-    width:70px;
-}
-
-.back-btn {
-    margin-top:20px;
-    padding:10px;
-    width:200px;
-    background:#ddd;
-    border:none;
-    border-radius:8px;
-    cursor:pointer;
-}
-</style>
+  <meta charset="UTF-8">
+  <title>Mini Colab No Server</title>
+  <style>
+    body { background:#111; color:#0f0; font-family: monospace; padding:20px; }
+    textarea { width:100%; height:200px; background:#000; color:#0f0; }
+    button { padding:10px; margin-top:10px; }
+    pre { background:#000; padding:10px; margin-top:10px; }
+  </style>
 </head>
-
 <body>
 
-<header>
-    <h1>Alix-MOD</h1>
-</header>
+<h2>Offline Script Runner (Browser)</h2>
 
-<!-- INFO -->
-<div class="info">
+<textarea id="code">
+fetch("https://api.github.com")
+  .then(r => r.json())
+  .then(d => console.log(d));
+</textarea>
 
-<h2>📌 Activation Instructions</h2>
+<br>
+<button onclick="run()">Run</button>
 
-<p>
-Please follow these instructions to complete activation:
-</p>
-
-<p>
-1️⃣ Subscribe to the YouTube channel<br>
-2️⃣ What your phone's operating system (Android/iOS)<br>
-3️⃣ Sharing the (Alix-MOD) will result in you being banned.
-</p>
-
-<p>
-📌 Important Notes:<br>
-- If a signal is received from another country or device, you will be blocked immediately without warning.<br>
-- Changing devices is not permitted without prior contacting me.
-</p>
-
-<p>
-⚠️ Do not use any VPN when using (Alix-MOD).<br>
-⚠️ Attention: By receiving the code, you agree to all the above terms and conditions.
-</p>
-
-<hr>
-
-<p>
-The mope.io hacking program is available for the following systems:
-</p>
-
-<p>
-✅ Android<br>
-✅ iOS<br>
-✅ PC
-</p>
-
-<p>
-📌 Important Information:
-</p>
-
-<p>
-🎁 Special Offer for a Limited Time: Previous Price $7 - Now $4
-</p>
-
-<p>
-1️⃣ Price: $4<br>
-Subscription Period: Lifetime.<br>
-Currency: USD.
-</p>
-
-<p>
-⚡️ Program Features:<br>
-• Lifetime Subscription<br>
-• Free Automatic Updates
-</p>
-
-<p style="color:red;">
-⚠️ This code is private. Sharing or leaking it will result in an immediate ban without warning.
-</p>
-
-</div>
-
-<!-- VIDEO -->
-<div class="video">
-    <iframe src="https://www.youtube.com/embed/X56Y64Lr3mg"></iframe>
-</div>
-
-<!-- STORE -->
-<div id="mainPage">
-
-<div class="container">
-    <div class="platforms">
-
-        <div class="card">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg">
-            <h3>iOS</h3>
-            <button onclick="openPay('iOS')">Select</button>
-        </div>
-
-        <div class="card">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/d/d7/Android_robot.svg">
-            <h3>Android</h3>
-            <button onclick="openPay('Android')">Select</button>
-        </div>
-
-        <div class="card">
-            <img src="https://cdn-icons-png.flaticon.com/512/1006/1006363.png">
-            <h3>Computer</h3>
-            <button onclick="openPay('Computer')">Select</button>
-        </div>
-
-    </div>
-</div>
-
-</div>
-
-<!-- PAYMENT -->
-<div id="paymentPage">
-
-    <h2 id="deviceTitle"></h2>
-
-    <h3>Choose Payment Method</h3>
-
-    <div class="pay-options">
-
-        <div class="pay-card">
-            <img src="https://cdn-icons-png.flaticon.com/512/196/196566.png">
-            <p>PayPal</p>
-            <button onclick="pay('paypal')">Pay</button>
-        </div>
-
-        <div class="pay-card">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYXtVSSiw-oOmMhxlC1RWE_jowqLPjA3XBwtNKW6j8lg&s=10">
-            <p>USDT (BEP20)</p>
-            <button onclick="pay('usdt')">Pay</button>
-        </div>
-
-        <div class="pay-card">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQT_jv45R6IfJ-tUpSM_wiZuIQvCyjfex-a7dplE23cfA&s=10">
-            <p>Wise</p>
-            <button onclick="pay('wise')">Pay</button>
-        </div>
-
-    </div>
-
-    <button class="back-btn" onclick="back()">⬅ Back</button>
-
-</div>
+<pre id="out"></pre>
 
 <script>
+function run() {
+    const out = document.getElementById("out");
+    out.innerText = "";
 
-let device = "";
+    const logs = [];
+    const customConsole = {
+        log: (...a) => logs.push(a.join(" "))
+    };
 
-function openPay(name){
-    device = name;
+    try {
+        const code = document.getElementById("code").value;
 
-    document.getElementById("mainPage").style.display = "none";
-    document.getElementById("paymentPage").style.display = "block";
+        const fn = new Function("console", code);
+        fn(customConsole);
 
-    document.getElementById("deviceTitle").innerText = "Payment for " + device;
-}
-
-function back(){
-    document.getElementById("paymentPage").style.display = "none";
-    document.getElementById("mainPage").style.display = "block";
-}
-
-function pay(method){
-
-    if(method === "paypal"){
-        window.location.href = "https://paypal.me/YOURNAME";
+        out.innerText = logs.join("\n");
+    } catch (e) {
+        out.innerText = e;
     }
-
-    if(method === "usdt"){
-        alert("USDT (BEP20)\nYOUR_WALLET_ADDRESS");
-    }
-
-    if(method === "wise"){
-        alert("Wise: YOUR_EMAIL");
-    }
-
 }
-
 </script>
 
 </body>

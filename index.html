@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mope Script Store</title>
+<title>Alix-MOD</title>
 
 <style>
 body {
@@ -20,11 +20,31 @@ header {
     border-bottom:1px solid #ddd;
 }
 
+h1 {
+    margin:0;
+    font-size:26px;
+}
+
+/* INFO SECTION */
+.info {
+    background:white;
+    padding:25px;
+    margin:20px;
+    border-radius:10px;
+    line-height:1.6;
+}
+
+.info h2 {
+    color:#d10000;
+}
+
 /* VIDEO */
 .video {
     text-align:center;
     padding:20px;
     background:white;
+    margin:20px;
+    border-radius:10px;
 }
 
 .video iframe {
@@ -34,7 +54,7 @@ header {
     border:none;
 }
 
-/* CARDS */
+/* STORE */
 .container {
     padding:30px;
 }
@@ -93,24 +113,7 @@ button {
     border-radius:12px;
 }
 
-/* 👇 تعديل الأحجام هنا */
 .pay-card img {
-    height:auto;
-    object-fit:contain;
-}
-
-/* PayPal كبير */
-.pay-card.paypal img {
-    width:90px;
-}
-
-/* Wise كبير */
-.pay-card.wise img {
-    width:90px;
-}
-
-/* USDT أصغر شوي */
-.pay-card.usdt img {
     width:70px;
 }
 
@@ -129,15 +132,79 @@ button {
 <body>
 
 <header>
-    <h1>Mope Script Store</h1>
+    <h1>Alix-MOD</h1>
 </header>
+
+<!-- INFO -->
+<div class="info">
+
+<h2>📌 Activation Instructions</h2>
+
+<p>
+Please follow these instructions to complete activation:
+</p>
+
+<p>
+1️⃣ Subscribe to the YouTube channel<br>
+2️⃣ What your phone's operating system (Android/iOS)<br>
+3️⃣ Sharing the (Alix-MOD) will result in you being banned.
+</p>
+
+<p>
+📌 Important Notes:<br>
+- If a signal is received from another country or device, you will be blocked immediately without warning.<br>
+- Changing devices is not permitted without prior contacting me.
+</p>
+
+<p>
+⚠️ Do not use any VPN when using (Alix-MOD).<br>
+⚠️ Attention: By receiving the code, you agree to all the above terms and conditions.
+</p>
+
+<hr>
+
+<p>
+The mope.io hacking program is available for the following systems:
+</p>
+
+<p>
+✅ Android<br>
+✅ iOS<br>
+✅ PC
+</p>
+
+<p>
+📌 Important Information:
+</p>
+
+<p>
+🎁 Special Offer for a Limited Time: Previous Price $7 - Now $4
+</p>
+
+<p>
+1️⃣ Price: $4<br>
+Subscription Period: Lifetime.<br>
+Currency: USD.
+</p>
+
+<p>
+⚡️ Program Features:<br>
+• Lifetime Subscription<br>
+• Free Automatic Updates
+</p>
+
+<p style="color:red;">
+⚠️ This code is private. Sharing or leaking it will result in an immediate ban without warning.
+</p>
+
+</div>
 
 <!-- VIDEO -->
 <div class="video">
     <iframe src="https://www.youtube.com/embed/X56Y64Lr3mg"></iframe>
 </div>
 
-<!-- MAIN -->
+<!-- STORE -->
 <div id="mainPage">
 
 <div class="container">
@@ -166,7 +233,7 @@ button {
 
 </div>
 
-<!-- PAYMENT PAGE -->
+<!-- PAYMENT -->
 <div id="paymentPage">
 
     <h2 id="deviceTitle"></h2>
@@ -175,22 +242,19 @@ button {
 
     <div class="pay-options">
 
-        <!-- PayPal (كبير) -->
-        <div class="pay-card paypal">
+        <div class="pay-card">
             <img src="https://cdn-icons-png.flaticon.com/512/196/196566.png">
             <p>PayPal</p>
             <button onclick="pay('paypal')">Pay</button>
         </div>
 
-        <!-- USDT (أصغر شوي) -->
-        <div class="pay-card usdt">
+        <div class="pay-card">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYXtVSSiw-oOmMhxlC1RWE_jowqLPjA3XBwtNKW6j8lg&s=10">
             <p>USDT (BEP20)</p>
             <button onclick="pay('usdt')">Pay</button>
         </div>
 
-        <!-- Wise (كبير) -->
-        <div class="pay-card wise">
+        <div class="pay-card">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQT_jv45R6IfJ-tUpSM_wiZuIQvCyjfex-a7dplE23cfA&s=10">
             <p>Wise</p>
             <button onclick="pay('wise')">Pay</button>

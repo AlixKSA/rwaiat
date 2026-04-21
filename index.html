@@ -1,51 +1,131 @@
 <!DOCTYPE html>
-<html>
+<html lang="ar">
 <head>
-  <meta charset="UTF-8">
-  <title>Mini Colab No Server</title>
-  <style>
-    body { background:#111; color:#0f0; font-family: monospace; padding:20px; }
-    textarea { width:100%; height:200px; background:#000; color:#0f0; }
-    button { padding:10px; margin-top:10px; }
-    pre { background:#000; padding:10px; margin-top:10px; }
-  </style>
+<meta charset="UTF-8">
+<title>عالم القوانين المتغيرة</title>
+<style>
+    body {
+        margin: 0;
+        overflow: hidden;
+        background: black;
+        color: white;
+        font-family: sans-serif;
+        text-align: center;
+    }
+    canvas {
+        display: block;
+        margin: auto;
+        background: #111;
+    }
+    #info {
+        position: fixed;
+        top: 10px;
+        width: 100%;
+        font-size: 18px;
+    }
+</style>
 </head>
 <body>
 
-<h2>Offline Script Runner (Browser)</h2>
-
-<textarea id="code">
-fetch("https://api.github.com")
-  .then(r => r.json())
-  .then(d => console.log(d));
-</textarea>
-
-<br>
-<button onclick="run()">Run</button>
-
-<pre id="out"></pre>
+<div id="info">اجمع الشرارات قبل تغيير القوانين!</div>
+<canvas id="game" width="500" height="500"></canvas>
 
 <script>
-function run() {
-    const out = document.getElementById("out");
-    out.innerText = "";
+const canvas = document.getElementById("game");
+const ctx = canvas.getContext("2d");
 
-    const logs = [];
-    const customConsole = {
-        log: (...a) => logs.push(a.join(" "))
+let player = {x:250,y:250,vx:0,vy:0};
+let keys = {};
+let gravity = 0.2;
+let reverseControls = false;
+let score = 0;
+
+let spark = randomSpark();
+
+function randomSpark(){
+    return {
+        x: Math.random()*480+10,
+        y: Math.random()*480+10
     };
+}
 
-    try {
-        const code = document.getElementById("code").value;
+document.addEventListener("keydown", e=>keys[e.key]=true);
+document.addEventListener("keyup", e=>keys[e.key]=false);
 
-        const fn = new Function("console", code);
-        fn(customConsole);
+function update(){
 
-        out.innerText = logs.join("\n");
-    } catch (e) {
-        out.innerText = e;
+    // تغيير القوانين كل 10 ثواني
+    if(Math.floor(Date.now()/10000)%2===0){
+        gravity = 0.2;
+        reverseControls = false;
+    } else {
+        gravity = -0.2;
+        reverseControls = true;
+    }
+
+    let speed = 0.5;
+
+    let left = keys["ArrowLeft"];
+    let right = keys["ArrowRight"];
+    let up = keys["ArrowUp"];
+    let down = keys["ArrowDown"];
+
+    if(reverseControls){
+        [left,right,up,down] = [right,left,down,up];
+    }
+
+    if(left) player.vx -= speed;
+    if(right) player.vx += speed;
+    if(up) player.vy -= speed;
+    if(down) player.vy += speed;
+
+    player.vy += gravity;
+
+    player.vx *= 0.95;
+    player.vy *= 0.95;
+
+    player.x += player.vx;
+    player.y += player.vy;
+
+    // حدود الشاشة
+    if(player.x<0) player.x=0;
+    if(player.x>500) player.x=500;
+    if(player.y<0) player.y=0;
+    if(player.y>500) player.y=500;
+
+    // جمع الشرارة
+    if(Math.hypot(player.x-spark.x,player.y-spark.y)<15){
+        score++;
+        spark = randomSpark();
     }
 }
+
+function draw(){
+    ctx.clearRect(0,0,500,500);
+
+    // اللاعب
+    ctx.fillStyle="cyan";
+    ctx.beginPath();
+    ctx.arc(player.x,player.y,10,0,Math.PI*2);
+    ctx.fill();
+
+    // الشرارة
+    ctx.fillStyle="yellow";
+    ctx.beginPath();
+    ctx.arc(spark.x,spark.y,6,0,Math.PI*2);
+    ctx.fill();
+
+    ctx.fillStyle="white";
+    ctx.fillText("Score: "+score,10,20);
+}
+
+function loop(){
+    update();
+    draw();
+    requestAnimationFrame(loop);
+}
+
+loop();
 </script>
 
 </body>

@@ -3,19 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mope Store</title>
+<title>Mope Script Store</title>
 
 <style>
 body {
     margin:0;
-    font-family: Arial;
+    font-family: Arial, sans-serif;
     background:#f5f5f5;
 }
 
 /* HEADER */
 header {
-    background:#fff;
-    padding:15px;
+    background:#ffffff;
+    padding:15px 30px;
     text-align:center;
     border-bottom:1px solid #ddd;
 }
@@ -24,30 +24,58 @@ h1 { margin:0; }
 
 /* HERO */
 .hero {
+    padding:30px;
+    background:white;
     text-align:center;
+}
+
+/* CARDS */
+.container {
     padding:30px;
 }
 
-/* PRODUCT */
-.product {
+.platforms {
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+.card {
     background:white;
-    width:250px;
-    margin:20px auto;
+    border:1px solid #ddd;
+    border-radius:12px;
+    width:220px;
     padding:20px;
     text-align:center;
-    border:1px solid #ddd;
+    transition:0.2s;
+}
+
+.card:hover {
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+.card img {
+    width:80px;
+    margin-bottom:15px;
+}
+
+.price {
+    color:#b12704;
+    font-weight:bold;
 }
 
 button {
+    margin-top:10px;
+    width:100%;
     padding:10px;
     border:none;
-    background:#ffa41c;
-    width:100%;
-    margin-top:10px;
+    border-radius:8px;
+    background:#ff9900;
     cursor:pointer;
 }
 
-/* STEP BOX */
+/* POPUPS */
 .popup {
     display:none;
     position:fixed;
@@ -56,21 +84,10 @@ button {
     transform:translate(-50%,-50%);
     background:white;
     padding:20px;
-    border:1px solid #ccc;
+    border-radius:12px;
     width:300px;
+    border:1px solid #ccc;
     text-align:center;
-}
-
-/* PLATFORM */
-.platform {
-    display:flex;
-    justify-content:space-around;
-    margin-top:15px;
-}
-
-.platform img {
-    width:60px;
-    cursor:pointer;
 }
 </style>
 </head>
@@ -82,33 +99,44 @@ button {
 </header>
 
 <div class="hero">
-    <h2>Private Script</h2>
-    <p>Fast • Clean • Safe</p>
+    <h2>Choose Your Platform</h2>
 </div>
 
-<div class="product">
-    <h3>Mope.io Script</h3>
-    <p style="color:#b12704;"><b>$5</b></p>
-    <button onclick="openPlatform()">Select</button>
-</div>
+<div class="container">
 
-<!-- STEP 1: SELECT PLATFORM -->
-<div id="platformBox" class="popup">
-    <h3>Select Platform</h3>
+    <div class="platforms">
 
-    <div class="platform">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" onclick="selectPlatform('iOS')">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d7/Android_robot.svg" onclick="selectPlatform('Android')">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnxikKQq4AcCyt2KlJs3BzkDx84SEkxylVFkcuEG9Rfw&s=10" onclick="selectPlatform('Computer')">
+        <!-- iOS -->
+        <div class="card">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg">
+            <h3>iOS</h3>
+            <p class="price">$5</p>
+            <button onclick="openPayment('iOS')">Select</button>
+        </div>
+
+        <!-- Android -->
+        <div class="card">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/d/d7/Android_robot.svg">
+            <h3>Android</h3>
+            <p class="price">$5</p>
+            <button onclick="openPayment('Android')">Select</button>
+        </div>
+
+        <!-- Computer -->
+        <div class="card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnxikKQq4AcCyt2KlJs3BzkDx84SEkxylVFkcuEG9Rfw&s=10">
+            <h3>Computer</h3>
+            <p class="price">$5</p>
+            <button onclick="openPayment('Computer')">Select</button>
+        </div>
+
     </div>
 
-    <br>
-    <button onclick="closePlatform()">Close</button>
 </div>
 
-<!-- STEP 2: PAYMENT -->
+<!-- PAYMENT -->
 <div id="paymentBox" class="popup">
-    <h3 id="deviceTitle"></h3>
+    <h3 id="title"></h3>
 
     <button onclick="pay('paypal')">PayPal</button>
     <button onclick="pay('usdt')">USDT (BEP20)</button>
@@ -118,7 +146,7 @@ button {
     <button onclick="closePayment()">Close</button>
 </div>
 
-<!-- USDT -->
+<!-- CRYPTO -->
 <div id="cryptoBox" class="popup">
     <h3>USDT (BEP20)</h3>
     <p>Network: BSC</p>
@@ -132,21 +160,11 @@ button {
 
 <script>
 
-let selectedDevice = "";
+let device = "";
 
-function openPlatform(){
-    document.getElementById("platformBox").style.display = "block";
-}
-
-function closePlatform(){
-    document.getElementById("platformBox").style.display = "none";
-}
-
-function selectPlatform(device){
-    selectedDevice = device;
-    document.getElementById("platformBox").style.display = "none";
-
-    document.getElementById("deviceTitle").innerText = "Payment for " + device;
+function openPayment(selected){
+    device = selected;
+    document.getElementById("title").innerText = "Payment for " + device;
     document.getElementById("paymentBox").style.display = "block";
 }
 

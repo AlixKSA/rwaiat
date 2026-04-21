@@ -3,66 +3,93 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mope.io Script Store</title>
+<title>Mope Script Store</title>
 
 <style>
 body {
     margin:0;
-    font-family:Arial;
-    background:#0c0c0e;
-    color:white;
+    font-family: Arial, sans-serif;
+    background:#f5f5f5;
+    color:#111;
 }
 
 /* HEADER */
 header {
-    text-align:center;
-    padding:40px;
-    background:#111;
-    border-bottom:2px solid red;
+    background:#ffffff;
+    padding:15px 30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid #ddd;
 }
 
-h1 { color:red; }
+.logo {
+    font-size:22px;
+    font-weight:bold;
+}
 
-/* SECTION */
-.container {
+.buy-btn {
+    background:#ff9900;
+    border:none;
+    padding:10px 15px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+/* HERO */
+.hero {
     padding:40px;
+    background:white;
     text-align:center;
+}
+
+.hero h1 {
+    margin:0;
 }
 
 /* CARDS */
+.container {
+    padding:30px;
+}
+
 .platforms {
     display:flex;
-    justify-content:center;
-    gap:25px;
+    gap:20px;
     flex-wrap:wrap;
+    justify-content:center;
 }
 
 .card {
-    background:#1a1a1d;
-    padding:20px;
-    border-radius:15px;
+    background:white;
+    border:1px solid #ddd;
+    border-radius:12px;
     width:220px;
-    transition:0.3s;
-    border:1px solid #333;
+    padding:20px;
+    text-align:center;
+    transition:0.2s;
 }
 
 .card:hover {
-    transform:scale(1.05);
-    border-color:red;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
 }
 
 .card img {
-    width:100px;
-    margin-bottom:10px;
+    width:80px;
+    margin-bottom:15px;
+}
+
+.price {
+    color:#b12704;
+    font-weight:bold;
 }
 
 button {
-    padding:10px;
+    margin-top:10px;
     width:100%;
+    padding:10px;
     border:none;
-    background:red;
-    color:white;
-    border-radius:10px;
+    border-radius:8px;
+    background:#ff9900;
     cursor:pointer;
 }
 
@@ -73,11 +100,11 @@ button {
     top:50%;
     left:50%;
     transform:translate(-50%,-50%);
-    background:#111;
+    background:white;
     padding:20px;
-    border-radius:15px;
+    border-radius:12px;
     width:300px;
-    border:1px solid red;
+    border:1px solid #ccc;
     text-align:center;
 }
 
@@ -91,9 +118,7 @@ input {
 footer {
     text-align:center;
     padding:20px;
-    border-top:1px solid #222;
-    margin-top:50px;
-    color:#aaa;
+    color:#666;
 }
 </style>
 </head>
@@ -101,31 +126,42 @@ footer {
 <body>
 
 <header>
-    <h1>Mope.io Script Store</h1>
-    <p>Private & Powerful Scripts</p>
+    <div class="logo">Mope Script Store</div>
+    <button class="buy-btn" onclick="openPayment()">Buy Now</button>
 </header>
+
+<div class="hero">
+    <h1>Best Private Scripts for Mope.io</h1>
+    <p>Fast • Safe • Powerful</p>
+</div>
 
 <div class="container">
 
-    <h2>Select Your Platform</h2>
+    <h2 style="text-align:center;">Choose Platform</h2>
 
     <div class="platforms">
 
+        <!-- iOS -->
         <div class="card">
-            <img src="https://cdn-icons-png.flaticon.com/512/731/731985.png">
+            <img src="https://cdn-icons-png.flaticon.com/512/0/747.png">
             <h3>iOS</h3>
+            <p class="price">$5</p>
             <button onclick="openPayment()">Buy Now</button>
         </div>
 
+        <!-- Android -->
         <div class="card">
-            <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png">
+            <img src="https://cdn-icons-png.flaticon.com/512/226/226770.png">
             <h3>Android</h3>
+            <p class="price">$5</p>
             <button onclick="openPayment()">Buy Now</button>
         </div>
 
+        <!-- Computer -->
         <div class="card">
-            <img src="https://cdn-icons-png.flaticon.com/512/888/888879.png">
+            <img src="https://cdn-icons-png.flaticon.com/512/2920/2920244.png">
             <h3>Computer</h3>
+            <p class="price">$5</p>
             <button onclick="openPayment()">Buy Now</button>
         </div>
 
@@ -135,7 +171,7 @@ footer {
 
 <!-- PAYMENT BOX -->
 <div id="paymentBox">
-    <h3>Select Payment</h3>
+    <h3>Select Payment Method</h3>
 
     <button onclick="pay('paypal')">PayPal</button>
     <button onclick="pay('usdt')">USDT (BEP20)</button>
@@ -145,15 +181,15 @@ footer {
     <button onclick="closePayment()">Close</button>
 </div>
 
-<!-- USDT BOX -->
+<!-- CRYPTO BOX -->
 <div id="cryptoBox">
     <h3>USDT (BEP20)</h3>
 
-    <p><b>Network:</b> BSC (BEP20)</p>
+    <p><b>Network:</b> BSC</p>
 
     <input id="wallet" value="YOUR_WALLET_ADDRESS" readonly>
 
-    <p style="color:red;">⚠️ Send ONLY BEP20</p>
+    <p style="color:red;">Send ONLY BEP20</p>
 
     <button onclick="copyAddress()">Copy</button>
     <button onclick="closeCrypto()">Close</button>

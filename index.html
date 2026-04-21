@@ -3,98 +3,52 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mope Script Store</title>
+<title>Mope Store</title>
 
 <style>
 body {
     margin:0;
-    font-family: Arial, sans-serif;
+    font-family: Arial;
     background:#f5f5f5;
-    color:#111;
 }
 
 /* HEADER */
 header {
-    background:#ffffff;
-    padding:15px 30px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+    background:#fff;
+    padding:15px;
+    text-align:center;
     border-bottom:1px solid #ddd;
 }
 
-.logo {
-    font-size:22px;
-    font-weight:bold;
-}
-
-.buy-btn {
-    background:#ff9900;
-    border:none;
-    padding:10px 15px;
-    border-radius:8px;
-    cursor:pointer;
-}
+h1 { margin:0; }
 
 /* HERO */
 .hero {
-    padding:40px;
-    background:white;
     text-align:center;
-}
-
-.hero h1 {
-    margin:0;
-}
-
-/* CARDS */
-.container {
     padding:30px;
 }
 
-.platforms {
-    display:flex;
-    gap:20px;
-    flex-wrap:wrap;
-    justify-content:center;
-}
-
-.card {
+/* PRODUCT */
+.product {
     background:white;
-    border:1px solid #ddd;
-    border-radius:12px;
-    width:220px;
+    width:250px;
+    margin:20px auto;
     padding:20px;
     text-align:center;
-    transition:0.2s;
-}
-
-.card:hover {
-    box-shadow:0 5px 15px rgba(0,0,0,0.1);
-}
-
-.card img {
-    width:80px;
-    margin-bottom:15px;
-}
-
-.price {
-    color:#b12704;
-    font-weight:bold;
+    border:1px solid #ddd;
 }
 
 button {
-    margin-top:10px;
-    width:100%;
     padding:10px;
     border:none;
-    border-radius:8px;
-    background:#ff9900;
+    background:#ffa41c;
+    width:100%;
+    margin-top:10px;
     cursor:pointer;
 }
 
-/* PAYMENT MODAL */
-#paymentBox, #cryptoBox {
+/* STEP BOX */
+.popup {
     display:none;
     position:fixed;
     top:50%;
@@ -102,23 +56,21 @@ button {
     transform:translate(-50%,-50%);
     background:white;
     padding:20px;
-    border-radius:12px;
-    width:300px;
     border:1px solid #ccc;
+    width:300px;
     text-align:center;
 }
 
-input {
-    width:100%;
-    padding:10px;
-    margin-top:10px;
+/* PLATFORM */
+.platform {
+    display:flex;
+    justify-content:space-around;
+    margin-top:15px;
 }
 
-/* FOOTER */
-footer {
-    text-align:center;
-    padding:20px;
-    color:#666;
+.platform img {
+    width:60px;
+    cursor:pointer;
 }
 </style>
 </head>
@@ -126,52 +78,37 @@ footer {
 <body>
 
 <header>
-    <div class="logo">Mope Script Store</div>
-    <button class="buy-btn" onclick="openPayment()">Buy Now</button>
+    <h1>Mope Script Store</h1>
 </header>
 
 <div class="hero">
-    <h1>Best Private Scripts for Mope.io</h1>
-    <p>Fast • Safe • Powerful</p>
+    <h2>Private Script</h2>
+    <p>Fast • Clean • Safe</p>
 </div>
 
-<div class="container">
+<div class="product">
+    <h3>Mope.io Script</h3>
+    <p style="color:#b12704;"><b>$5</b></p>
+    <button onclick="openPlatform()">Select</button>
+</div>
 
-    <h2 style="text-align:center;">Choose Platform</h2>
+<!-- STEP 1: SELECT PLATFORM -->
+<div id="platformBox" class="popup">
+    <h3>Select Platform</h3>
 
-    <div class="platforms">
-
-        <!-- iOS -->
-        <div class="card">
-            <img src="https://cdn-icons-png.flaticon.com/512/0/747.png">
-            <h3>iOS</h3>
-            <p class="price">$5</p>
-            <button onclick="openPayment()">Buy Now</button>
-        </div>
-
-        <!-- Android -->
-        <div class="card">
-            <img src="https://cdn-icons-png.flaticon.com/512/226/226770.png">
-            <h3>Android</h3>
-            <p class="price">$5</p>
-            <button onclick="openPayment()">Buy Now</button>
-        </div>
-
-        <!-- Computer -->
-        <div class="card">
-            <img src="https://cdn-icons-png.flaticon.com/512/2920/2920244.png">
-            <h3>Computer</h3>
-            <p class="price">$5</p>
-            <button onclick="openPayment()">Buy Now</button>
-        </div>
-
+    <div class="platform">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" onclick="selectPlatform('iOS')">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d7/Android_robot.svg" onclick="selectPlatform('Android')">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnxikKQq4AcCyt2KlJs3BzkDx84SEkxylVFkcuEG9Rfw&s=10" onclick="selectPlatform('Computer')">
     </div>
 
+    <br>
+    <button onclick="closePlatform()">Close</button>
 </div>
 
-<!-- PAYMENT BOX -->
-<div id="paymentBox">
-    <h3>Select Payment Method</h3>
+<!-- STEP 2: PAYMENT -->
+<div id="paymentBox" class="popup">
+    <h3 id="deviceTitle"></h3>
 
     <button onclick="pay('paypal')">PayPal</button>
     <button onclick="pay('usdt')">USDT (BEP20)</button>
@@ -181,27 +118,35 @@ footer {
     <button onclick="closePayment()">Close</button>
 </div>
 
-<!-- CRYPTO BOX -->
-<div id="cryptoBox">
+<!-- USDT -->
+<div id="cryptoBox" class="popup">
     <h3>USDT (BEP20)</h3>
+    <p>Network: BSC</p>
 
-    <p><b>Network:</b> BSC</p>
-
-    <input id="wallet" value="YOUR_WALLET_ADDRESS" readonly>
+    <input value="YOUR_WALLET_ADDRESS" readonly>
 
     <p style="color:red;">Send ONLY BEP20</p>
 
-    <button onclick="copyAddress()">Copy</button>
     <button onclick="closeCrypto()">Close</button>
 </div>
 
-<footer>
-    © 2026 Mope Script Store
-</footer>
-
 <script>
 
-function openPayment(){
+let selectedDevice = "";
+
+function openPlatform(){
+    document.getElementById("platformBox").style.display = "block";
+}
+
+function closePlatform(){
+    document.getElementById("platformBox").style.display = "none";
+}
+
+function selectPlatform(device){
+    selectedDevice = device;
+    document.getElementById("platformBox").style.display = "none";
+
+    document.getElementById("deviceTitle").innerText = "Payment for " + device;
     document.getElementById("paymentBox").style.display = "block";
 }
 
@@ -223,17 +168,10 @@ function pay(method){
     if(method === "wise"){
         alert("Send via Wise to: YOUR_EMAIL");
     }
-
 }
 
 function closeCrypto(){
     document.getElementById("cryptoBox").style.display = "none";
-}
-
-function copyAddress(){
-    let text = document.getElementById("wallet").value;
-    navigator.clipboard.writeText(text);
-    alert("Copied!");
 }
 
 </script>

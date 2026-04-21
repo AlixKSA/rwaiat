@@ -88,12 +88,25 @@ button {
     background:white;
     border:1px solid #ddd;
     padding:15px;
-    width:150px;
+    width:160px;
     text-align:center;
+    border-radius:12px;
 }
 
 .pay-card img {
     width:60px;
+    height:60px;
+    object-fit:contain;
+}
+
+.back-btn {
+    margin-top:20px;
+    padding:10px;
+    width:200px;
+    background:#ddd;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
 }
 </style>
 </head>
@@ -109,7 +122,7 @@ button {
     <iframe src="https://www.youtube.com/embed/X56Y64Lr3mg"></iframe>
 </div>
 
-<!-- MAIN STORE -->
+<!-- MAIN -->
 <div id="mainPage">
 
 <div class="container">
@@ -118,19 +131,19 @@ button {
         <div class="card">
             <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg">
             <h3>iOS</h3>
-            <button onclick="goPay('iOS','https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg')">Select</button>
+            <button onclick="openPay('iOS')">Select</button>
         </div>
 
         <div class="card">
             <img src="https://upload.wikimedia.org/wikipedia/commons/d/d7/Android_robot.svg">
             <h3>Android</h3>
-            <button onclick="goPay('Android','https://upload.wikimedia.org/wikipedia/commons/d/d7/Android_robot.svg')">Select</button>
+            <button onclick="openPay('Android')">Select</button>
         </div>
 
         <div class="card">
             <img src="https://cdn-icons-png.flaticon.com/512/1006/1006363.png">
             <h3>Computer</h3>
-            <button onclick="goPay('Computer','https://cdn-icons-png.flaticon.com/512/1006/1006363.png')">Select</button>
+            <button onclick="openPay('Computer')">Select</button>
         </div>
 
     </div>
@@ -141,8 +154,7 @@ button {
 <!-- PAYMENT PAGE -->
 <div id="paymentPage">
 
-    <h2 id="deviceName"></h2>
-    <img id="deviceImg" style="width:80px;">
+    <h2 id="deviceTitle"></h2>
 
     <h3>Choose Payment Method</h3>
 
@@ -155,35 +167,37 @@ button {
             <button onclick="pay('paypal')">Pay</button>
         </div>
 
-        <!-- USDT -->
+        <!-- USDT (BEP20) -->
         <div class="pay-card">
-            <img src="https://cryptologos.cc/logos/tether-usdt-logo.png">
-            <p>USDT</p>
+            <img src="https://cryptologos.cc/logos/tether-usdt-logo.png?v=029">
+            <p>USDT (BEP20)</p>
             <button onclick="pay('usdt')">Pay</button>
         </div>
 
         <!-- Wise -->
         <div class="pay-card">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Wise_logo.svg">
+            <img src="https://cdn-icons-png.flaticon.com/512/5968/5968872.png">
             <p>Wise</p>
             <button onclick="pay('wise')">Pay</button>
         </div>
 
     </div>
 
-    <br><br>
-    <button onclick="back()">⬅ Back</button>
+    <button class="back-btn" onclick="back()">⬅ Back</button>
 
 </div>
 
 <script>
 
-function goPay(name, img){
+let device = "";
+
+function openPay(name){
+    device = name;
+
     document.getElementById("mainPage").style.display = "none";
     document.getElementById("paymentPage").style.display = "block";
 
-    document.getElementById("deviceName").innerText = name;
-    document.getElementById("deviceImg").src = img;
+    document.getElementById("deviceTitle").innerText = "Payment for " + device;
 }
 
 function back(){
@@ -198,7 +212,7 @@ function pay(method){
     }
 
     if(method === "usdt"){
-        alert("Send USDT (BEP20)\nYOUR_WALLET_ADDRESS");
+        alert("USDT (BEP20)\nYOUR_WALLET_ADDRESS");
     }
 
     if(method === "wise"){

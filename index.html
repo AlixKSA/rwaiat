@@ -1,54 +1,69 @@
-<div class="novel-card">
+.novel-desc{
+    color:#999;
+    line-height:1.7;
+    margin-top:10px;
+}
 
-    <img src="https://picsum.photos/300/400?random=1">
+.novel-stats{
+    display:flex;
+    justify-content:space-between;
+    margin:20px 0;
+    color:#777;
+    font-size:14px;
+}
 
-    <div class="novel-info">
+.big-btn{
+    height:60px;
+    font-size:18px;
+    border-radius:16px;
+    margin-bottom:25px;
+    letter-spacing:1px;
+}
 
-        <h2>Void King</h2>
+.read-btn{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:100%;
+    background:linear-gradient(45deg,#7c3aed,#a855f7);
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+    transition:.3s;
+}
 
-        <div class="tags">
-            <span class="tag">Fantasy</span>
-            <span class="tag">Action</span>
-            <span class="tag">System</span>
-        </div>
+.read-btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 10px 30px rgba(168,85,247,.3);
+}
 
-        <p class="novel-desc">
-            Humanity vanished after mysterious gates opened across Earth.
-        </p>
+.chapters-preview{
+    border-top:1px solid #222;
+    padding-top:20px;
+}
 
-        <div class="novel-stats">
-            <span>⭐ 4.9</span>
-            <span>📖 10 Chapters</span>
-            <span>👁 120K</span>
-        </div>
+.chapter-title{
+    margin-bottom:15px;
+    font-size:18px;
+    font-weight:bold;
+}
 
-        <a class="read-btn big-btn" href="novel.html">
-            READ NOW
-        </a>
+.mini-chapter{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:#181818;
+    padding:14px 16px;
+    border-radius:14px;
+    margin-bottom:12px;
+    transition:.3s;
+}
 
-        <div class="chapters-preview">
+.mini-chapter:hover{
+    background:#202020;
+}
 
-            <div class="chapter-title">
-                Latest Chapters
-            </div>
-
-            <div class="mini-chapter">
-                <span>Chapter 10</span>
-                <span class="locked">🔒 Premium</span>
-            </div>
-
-            <div class="mini-chapter">
-                <span>Chapter 9</span>
-                <span class="locked">🔒 Premium</span>
-            </div>
-
-            <div class="mini-chapter">
-                <span>Chapter 8</span>
-                <span class="locked">🔒 Premium</span>
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
+.locked{
+    color:#ffcc66;
+    font-size:14px;
+}

@@ -1,132 +1,55 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>عالم القوانين المتغيرة</title>
-<style>
-    body {
-        margin: 0;
-        overflow: hidden;
-        background: black;
-        color: white;
-        font-family: sans-serif;
-        text-align: center;
-    }
-    canvas {
-        display: block;
-        margin: auto;
-        background: #111;
-    }
-    #info {
-        position: fixed;
-        top: 10px;
-        width: 100%;
-        font-size: 18px;
-    }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShadowVerse Novels</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div id="info">اجمع الشرارات قبل تغيير القوانين!</div>
-<canvas id="game" width="500" height="500"></canvas>
+<header>
+    <div class="logo">ShadowVerse</div>
 
-<script>
-const canvas = document.getElementById("game");
-const ctx = canvas.getContext("2d");
+    <input type="text" id="searchInput" placeholder="Search novels...">
+</header>
 
-let player = {x:250,y:250,vx:0,vy:0};
-let keys = {};
-let gravity = 0.2;
-let reverseControls = false;
-let score = 0;
+<section class="hero">
+    <h1>Read Premium Web Novels</h1>
+    <p>Explore fantasy, action, reincarnation and more.</p>
+</section>
 
-let spark = randomSpark();
+<section class="novels" id="novelsContainer">
 
-function randomSpark(){
-    return {
-        x: Math.random()*480+10,
-        y: Math.random()*480+10
-    };
-}
+    <div class="novel-card">
+        <img src="https://picsum.photos/300/420?1">
+        <div class="novel-info">
+            <h2>Shadow Monarch</h2>
+            <p>Action • Fantasy</p>
+            <a href="reader.html">Read Now</a>
+        </div>
+    </div>
 
-document.addEventListener("keydown", e=>keys[e.key]=true);
-document.addEventListener("keyup", e=>keys[e.key]=false);
+    <div class="novel-card">
+        <img src="https://picsum.photos/300/420?2">
+        <div class="novel-info">
+            <h2>Reborn System</h2>
+            <p>Adventure • System</p>
+            <a href="reader.html">Read Now</a>
+        </div>
+    </div>
 
-function update(){
+    <div class="novel-card">
+        <img src="https://picsum.photos/300/420?3">
+        <div class="novel-info">
+            <h2>Dragon Emperor</h2>
+            <p>Martial Arts • Fantasy</p>
+            <a href="reader.html">Read Now</a>
+        </div>
+    </div>
 
-    // تغيير القوانين كل 10 ثواني
-    if(Math.floor(Date.now()/10000)%2===0){
-        gravity = 0.2;
-        reverseControls = false;
-    } else {
-        gravity = -0.2;
-        reverseControls = true;
-    }
+</section>
 
-    let speed = 0.5;
-
-    let left = keys["ArrowLeft"];
-    let right = keys["ArrowRight"];
-    let up = keys["ArrowUp"];
-    let down = keys["ArrowDown"];
-
-    if(reverseControls){
-        [left,right,up,down] = [right,left,down,up];
-    }
-
-    if(left) player.vx -= speed;
-    if(right) player.vx += speed;
-    if(up) player.vy -= speed;
-    if(down) player.vy += speed;
-
-    player.vy += gravity;
-
-    player.vx *= 0.95;
-    player.vy *= 0.95;
-
-    player.x += player.vx;
-    player.y += player.vy;
-
-    // حدود الشاشة
-    if(player.x<0) player.x=0;
-    if(player.x>500) player.x=500;
-    if(player.y<0) player.y=0;
-    if(player.y>500) player.y=500;
-
-    // جمع الشرارة
-    if(Math.hypot(player.x-spark.x,player.y-spark.y)<15){
-        score++;
-        spark = randomSpark();
-    }
-}
-
-function draw(){
-    ctx.clearRect(0,0,500,500);
-
-    // اللاعب
-    ctx.fillStyle="cyan";
-    ctx.beginPath();
-    ctx.arc(player.x,player.y,10,0,Math.PI*2);
-    ctx.fill();
-
-    // الشرارة
-    ctx.fillStyle="yellow";
-    ctx.beginPath();
-    ctx.arc(spark.x,spark.y,6,0,Math.PI*2);
-    ctx.fill();
-
-    ctx.fillStyle="white";
-    ctx.fillText("Score: "+score,10,20);
-}
-
-function loop(){
-    update();
-    draw();
-    requestAnimationFrame(loop);
-}
-
-loop();
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
